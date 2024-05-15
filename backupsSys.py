@@ -208,7 +208,7 @@ config_file = load_config_file()
 backup_type_settings, backup_source_paths, backup_destination_paths, log_path = get_config_settings(config_file)
 
 today_date = datetime.datetime.today().strftime('%m-%Y')
-# today_date = "04-2024"
+# today_date = "02-2024"
 today_formatted = datetime.datetime.strptime("01-" + today_date, '%d-%m-%Y')
 month_length = calendar.monthrange(today_formatted.year, today_formatted.month)[1]
 
@@ -218,9 +218,11 @@ backup_calendar = build_backup_calendar(backup_type_settings, today_date)
 print()
 print('\t\t\t\t\t\t\t  CALENDARIO [' + str(today_formatted.month) + "-" + str(today_formatted.year) + "] [" + str(month_length) + "]")
 print()
+print(*["L", "M", "X", "J", "V", "S", "D"], sep="\t\t\t")
 for r in backup_calendar:
     for c in r:
         print(str(c[0]) + "\t[" + c[1] + "]", end="\t\t")
     print()
 
+print()
 print("Config Mes [" + str(month_length) + "]: " + str(backup_type_settings[month_length]))
